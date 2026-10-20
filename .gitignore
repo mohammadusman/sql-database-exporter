@@ -1,0 +1,42 @@
+# Local secrets. .env.example is the only env file that belongs in source control.
+.env
+.env.*
+!.env.example
+
+# Generated database exports and archives.
+exports/
+*.csv
+*.zip
+
+# Workbooks can contain document metadata, local paths, and client identifiers.
+*.xlsx
+*.xls
+
+# Logs and temporary files.
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# PowerShell test and analysis output.
+TestResults/
+testResults.xml
+pester.xml
+coverage.xml
+
+# Editor and operating system files.
+.vs/
+.vscode/
+*.user
+*.suo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Private keys and certificates.
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer

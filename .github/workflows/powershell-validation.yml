@@ -1,0 +1,40 @@
+name: PowerShell validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Syntax, ScriptAnalyzer, and local checks
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        # Release tag for actions/checkout v4.4.0. A full commit SHA was not
+        # verified from the GitHub API in this workspace.
+        uses: actions/checkout@v4.4.0
+
+      - name: Run exporter validation
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          .\tests\Invoke-ExporterValidation.ps1
+
+      - name: Install PSScriptAnalyzer
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Install-Module -Name PSScriptAnalyzer -Scope CurrentUser -Force
+
+      - name: Run PSScriptAnalyzer
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Import-Module PSScriptAnalyzer
+          Invoke-ScriptAnalyzer -Path . -Recurse -Settings .\.github\PSScriptAnalyzerSettings.psd1 -Severity Warning,Error -EnableExit

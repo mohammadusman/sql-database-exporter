@@ -1,0 +1,12 @@
+{
+  "sourceWorkbook": "example-table-list.xlsx",
+  "sourceSheet": "Tables",
+  "purpose": "Synthetic table-name baseline for comparison only. Runtime exports are driven by SQL Server sys.tables. Replace these names with your own table names if you want the manifest to report differences. This file does not contain a customer schema.",
+  "tables": [
+    "Customers",
+    "Orders",
+    "OrderLines",
+    "Products",
+    "Categories"
+  ]
+}

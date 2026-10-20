@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "standard": {
+      "description": "Export all user tables except objects in the audit or staging schemas, or table names beginning with tmp_ or backup_.",
+      "excludeTablePrefixes": [
+        "tmp_",
+        "backup_"
+      ],
+      "excludeSchemas": [
+        "audit",
+        "staging"
+      ]
+    },
+    "full": {
+      "description": "Export all user tables except objects in the audit schema, or table names beginning with tmp_.",
+      "excludeTablePrefixes": [
+        "tmp_"
+      ],
+      "excludeSchemas": [
+        "audit"
+      ]
+    }
+  }
+}
